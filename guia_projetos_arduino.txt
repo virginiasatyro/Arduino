@@ -1,6 +1,10 @@
-BASICO
+LEDs
 	- blink_built_in
 	Pisca LED BUILTIN, ou seja, pisca o led na placa (porta 13) de 1 em 1 segundo;
 	
 	- blink_led 
 	Pisca LED de 1 em 1 segundo
+
+PWM
+	- fade_led 
+	Utilizando PWM, aumentamos e diminuímos a intensidade luminosa do LED.
