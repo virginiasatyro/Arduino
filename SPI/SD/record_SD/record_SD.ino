@@ -15,14 +15,14 @@ SdFat sdCard;
 SdFile file;
 
 const int ss = 10;   // select-slave
-bool record_flag = 0; // if flag is 0 - file not recorded
+int      record_flag = 0; // if flag is 0 - file not recorded
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   // initializing SD module
-  if(!sdCard.begin(ss, SPI_HALF_SPEED))sdCard.initErrorHalt(); 
-  if(!file.open("file_recorded.txt", O_RDWR | O_CREAT | O_AT_END)){
+  if(!sdCard.begin(ss, SPI_FULL_SPEED))sdCard.initErrorHalt(); 
+  if(!file.open("file_recorded2.txt", O_RDWR | O_CREAT | O_AT_END)){
     sdCard.errorHalt("Error opening file!");
   }
 }
@@ -33,7 +33,7 @@ void loop() {
     Serial.println("Recording file, please wait...");
     for(int i = 0; i < 100; i++){
       file.print(i);
-      file.println(" TC is the best!");
+      file.println(" 1, 2, 3 testando...");
       delay(1);
      }
 
