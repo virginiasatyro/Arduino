@@ -1,4 +1,5 @@
 /* Objetivo: receber CAN, verificar ID e gravar apenas as IDS escolhidas no cartão.
+ *  Testado 04/02  
  */
 #include <mcp_can.h>
 #include <SPI.h>
@@ -43,7 +44,7 @@ void setup()
 
 void loop()
 {    
-    if(!file.open("file_recorded_CAN4.txt", O_RDWR | O_CREAT | O_AT_END)){ // abre arquivo
+    if(!file.open("file_recorded_CAN8.txt", O_RDWR | O_CREAT | O_AT_END)){ // abre arquivo
       sdCard.errorHalt("Error opening file!");
     }
     
@@ -55,27 +56,72 @@ void loop()
         sprintf(msgString, "Extended ID: 0x%.8lX  DLC: %1d  Data:", (rxId & 0x1FFFFFFF), len);
       }else{
         sprintf(msgString, "Standard ID: 0x%.3lX       DLC: %1d  Data:", rxId, len);
+
+        switch(rxId){
+          case 0x150: 
+            file.print(msgString);
+            break;
+          case 0x250: 
+            file.print(msgString);
+            break;
+          case 0x350: 
+            file.print(msgString);
+            break;
+          case 0x450: 
+            file.print(msgString);
+            break;
+          case 0x550: 
+            file.print(msgString);
+            break;
+        }
       }
-    
       Serial.print(msgString);
-      file.print(msgString); ////////////////////////////////////////////////////////////////
-      delay(50);
     
       if((rxId & 0x40000000) == 0x40000000){    // Determine if message is a remote request frame.
         sprintf(msgString, " REMOTE REQUEST FRAME");
         Serial.print(msgString);
-        file.print(msgString); //////////////////////////////////////////////////////////////
-        delay(50);
+          switch(rxId){
+          case 0x150: 
+            file.print(msgString);
+            break;
+          case 0x250: 
+            file.print(msgString);
+            break;
+          case 0x350: 
+            file.print(msgString);
+            break;
+          case 0x450: 
+            file.print(msgString);
+            break;
+          case 0x550: 
+            file.print(msgString);
+            break;
+        }
       } else {
         for(byte i = 0; i<len; i++){
           sprintf(msgString, " 0x%.2X", rxBuf[i]);
           Serial.print(msgString);
-          file.print(msgString); ////////////////////////////////////////////////////////////
-          delay(50);
+          switch(rxId){
+          case 0x150: 
+            file.print(msgString);
+            break;
+          case 0x250: 
+            file.print(msgString);
+            break;
+          case 0x350: 
+            file.print(msgString);
+            break;
+          case 0x450: 
+            file.print(msgString);
+            break;
+          case 0x550: 
+            file.print(msgString);
+            break;
         }
-      }
-          
+        }
+      } 
       Serial.println();
+      file.println("");
     }
     file.close();
 }
