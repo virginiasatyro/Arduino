@@ -1,5 +1,22 @@
-/* Objetivo: otimizar o código de gravação no módulo SD;
+/*  File: record_CAN_STM_SD_ID_2
+ *  Arduino UNO
+ *  Arduino IDE
+ *  Author: Virgínia Sátyro
+ *  License: Free - Open Source
+ *  Created on Fevereiro de 2019
+ *   
+ *  Objetivo: otimizar o código de gravação no módulo SD;
  *  Evitar gravação dentro da interrupção;
+ *  Testado corretamente: 05/02
+ *  
+ *  Pontos a melhorar: 
+ *  - todas as IDS são standard (11 bits);
+ *  - a CAN não utiliza remote request frame;
+ *  - ou seja, retirar código inutilizado;
+ *  - as mensagens sempre tem len = 8, len_aux desnecessário;
+ *  - não é necessário utilizar o rxId_aux;
+ *  - o switch pode ser colocado dentro da interrupção, guardando 
+ *  apenas as variáveis que são necessárias; 
  */
 
 #include <mcp_can.h>
@@ -53,8 +70,8 @@ void setup() {
 void loop() {
   // CAN ----------------------------------------------------------------------------------
     if(!digitalRead(CAN0_INT)){  // If CAN0_INT pin is low, read receive buffer
-      CAN_flag = 1;
-      CAN0.readMsgBuf(&rxId, &len, rxBuf); // Read data: len = data length, buf = data byte(s)
+        CAN_flag = 1;
+        CAN0.readMsgBuf(&rxId, &len, rxBuf); // Read data: len = data length, buf = data byte(s)
 
      // Determine if ID is standard (11 bits) or extended (29 bits)
      if((rxId & 0x80000000) == 0x80000000){
@@ -92,7 +109,7 @@ void loop() {
       Serial.println();
 
     // SD - Open SD file --------------------------------------------------------------------
-    if(!file.open("recorded_CAN9.txt", O_RDWR | O_CREAT | O_AT_END)){ // abre arquivo
+    if(!file.open("recorded_CAN10.txt", O_RDWR | O_CREAT | O_AT_END)){ // abre arquivo
         sdCard.errorHalt("Error opening file!");
     }
 
