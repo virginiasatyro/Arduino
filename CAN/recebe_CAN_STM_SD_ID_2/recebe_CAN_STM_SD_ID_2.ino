@@ -115,7 +115,7 @@ void loop() {
 
     // SD - file record
     switch(rxId_aux){
-        case 0x150:
+        case 0x301: // 0x150
             file.print(msgString_aux);  
             for(byte i = 0; i < len_aux; i++){ // tentar otimizar esse for!
                 sprintf(msgString_aux_data, " 0x%.2X", rxBuf_aux[i]);
@@ -123,7 +123,7 @@ void loop() {
             }
             file.println();
             break;
-        case 0x250:
+        case 0x303: // 0x250
             file.print(msgString_aux);
             for(byte i = 0; i < len_aux; i++){ // tentar otimizar esse for!
                 sprintf(msgString_aux_data, " 0x%.2X", rxBuf_aux[i]);
