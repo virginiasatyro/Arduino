@@ -1,14 +1,12 @@
-/*  File: record_CAN_STM_SD_ID_3
+/*  File: datalogger_v1
  *  Arduino UNO
  *  Arduino IDE
  *  Author: Virgínia Sátyro
  *  License: Free - Open Source
  *  Created on Fevereiro de 2019
  *   
- *  Objetivo: otimizar o código de gravação no módulo SD;
- *  Simular o recebimento das variáveis reais do BMS e ECU
+ *  Objetivo: Datalogger Tesla UFMG 2019
  */
-int current_proof;
 
 #include <mcp_can.h>
 #include <SPI.h>
@@ -17,10 +15,8 @@ int current_proof;
 
 long unsigned int rxId;  // ID recieved 
 unsigned char len = 0;
-//unsigned byte rxBuf[8];
 byte rxBuf[8];
 char msgString[128];     // array to store serial string
-bool CAN_flag = 0;
 unsigned int vetRxInteiros[8];
 
 #define CAN0_INT 2 // set INT to pin 2
@@ -31,10 +27,8 @@ SdFat sdCard;
 SdFile file;
 #define ss 9 // select slave
 
-// Variáveis auxiliares para salvar os dados da CAN
-unsigned char rxBuf_aux[8];
-char msgString_aux[128];
-char msgString_aux_data[128];
+int current_proof; // prova
+long unsigned int rxId_aux;
 
 void setup() {
   // put your setup code here, to run once:
@@ -67,64 +61,69 @@ void loop() {
         if(rxId == 0x310){
           current_proof = data_word[0];
         }
-
-        // ENDURO
-        /*
+         
+        /* ENDURO
          * ECU timer | velocidade | torque médio | volante | freio | energia inversor direito |  
          * energia inversor esquerdo | corrente motor direito | corrente motor esquerdo | 
          * temp 1 inversor direito | temp 2 inversor esquerdo | corrente media bateria | tensao total |
          * temperatura media | temperatura maxima | menor tensao bateria 
          */
+         /*
         if(current_proof == 1){ 
           
-        }
-        // FIM - ENDURO
-        // ACELERACAO
-        /* 
+        }*/
+        // FIM - ENDURO 
+        /*  ACELERACAO
          *  veldd | velde | veltd | velte | torque motor direito | torque motor esquerdo | torque pedal direito | torque pedal esquerdo 
          */
         else if(current_proof == 2){ 
             if(rxId == 0x301){
-              vetRxInteiros[0] = data_word[0];
-              vetRxInteiros[1] = data_word[1];
-              vetRxInteiros[2] = data_word[2];
-              vetRxInteiros[3] = data_word[3];
+                vetRxInteiros[1] = data_word[0]; // confirmar informações e IDS referentes ao motor esquerdo e ao direito
+                vetRxInteiros[0] = data_word[1];
+                vetRxInteiros[3] = data_word[2];
+                vetRxInteiros[2] = data_word[3];
+            } 
+            if(rxId == 0x302){
+                vetRxInteiros[4] = data_word[0];
+                vetRxInteiros[5] = data_word[1];
             }
-            else if(rxId == 0x302){
-              vetRxInteiros[4] = data_word[4];
-              vetRxInteiros[5] = data_word[5];
-              vetRxInteiros[6] = data_word[6];
-              vetRxInteiros[7] = data_word[7];
-          }
+            if(rxId == 0x303){
+                vetRxInteiros[6] = data_word[2]; // confirmar o que é esquerda e direita
+                vetRxInteiros[7] = data_word[3];
+            }
         }       
         // FIM - ACELERACAO
-        // SKID
-        /*
-         * veldd | velde | veltd | velte | torque motor direito | torque motor esquerdo
+        /* SKID
+         * veldd | velde | veltd | velte | torque motor direito | torque motor esquerdo | volante
          */
         else if(current_proof == 3){ // skid
             if(rxId == 0x301){
-                vetRxInteiros[0] = data_word[0];
-                vetRxInteiros[1] = data_word[1];
-                vetRxInteiros[2] = data_word[2];
-                vetRxInteiros[3] = data_word[3];
-             }
-            else if(rxId == 0x302){
-               vetRxInteiros[4] = data_word[4];
-               vetRxInteiros[5] = data_word[5];
-               vetRxInteiros[6] = data_word[6];
-               vetRxInteiros[7] = data_word[7];
-             }
+              vetRxInteiros[1] = data_word[0]; // confirmar informações e IDS referentes ao motor esquerdo e ao direito
+              vetRxInteiros[0] = data_word[1];
+              vetRxInteiros[3] = data_word[2];
+              vetRxInteiros[2] = data_word[3];
+            } 
+            if(rxId == 0x302){
+              vetRxInteiros[4] = data_word[0];
+              vetRxInteiros[5] = data_word[1];
+            }
+            if(rxId == 0x304){ // NAO ENTRA AQUI??
+              Serial.println("Entrou rxId = 0x304!!!"); 
+              vetRxInteiros[6] = 1; // ----->>>> nao funciona
+              vetRxInteiros[7] = 0;
+            }
+            
         }
         // FIM - SKID
         
      }
      //Fim - interrupção ------------------------------------------------------------------------
-     sprintf(msgString, "%u\t%u\t%u\t%u\t%u\t%u\t%u\t%u\n", vetRxInteiros[0], vetRxInteiros[1], vetRxInteiros[2], vetRxInteiros[3], vetRxInteiros[4], vetRxInteiros[5], vetRxInteiros[6], vetRxInteiros[7]);
+     
+     sprintf(msgString, "%d, %u, %u, %u, %u, %u, %u, %u, %u\n", current_proof, vetRxInteiros[0], vetRxInteiros[1], vetRxInteiros[2], vetRxInteiros[3], vetRxInteiros[4], vetRxInteiros[5], vetRxInteiros[6], vetRxInteiros[7]);
      Serial.print(msgString);                         
 
      // SD - Open SD file -----------------------------------------------------------------------
-     if(!file.open("recorded_datalog.txt", O_RDWR | O_CREAT | O_AT_END)){ // abre arquivo
+     if(!file.open("recorded_datalog_v11.txt", O_RDWR | O_CREAT | O_AT_END)){ // abre arquivo
          sdCard.errorHalt("Error opening file!");
      }
 
@@ -133,6 +132,5 @@ void loop() {
      file.println();
         
      file.close();
-     CAN_flag = 0;
       // SD - file close -------------------------------------------------------------------------
 }
