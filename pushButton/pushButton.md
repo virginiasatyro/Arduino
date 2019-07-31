@@ -1,7 +1,5 @@
 # PushButton
 
-![](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwilqJ2v9N_jAhVjDrkGHbv4C3cQjRx6BAgBEAU&url=https%3A%2F%2Fwww.eletrogate.com%2Fpush-button-chave-tactil-6x6x6mm&psig=AOvVaw3TrcqJN1ltyjAJJzWfMsLL&ust=1564688315660989)
-
 O pushbutton é um componente que conecta dois pontos em um circuito quando pressionado. Por exemplo, podemos ligar com LED ao pressionar o botão e desligar ao pressioná-lo novamente.
 
 ## Componentes
@@ -14,6 +12,27 @@ O pushbutton é um componente que conecta dois pontos em um circuito quando pres
 
 ## Esquemático
 ![](https://www.arduino.cc/en/uploads/Tutorial/button_sch.png)
+
+### Resistores <b>Pull-up</b> e <b>Pull-down</b>
+![](https://www.embarcados.com.br/wp-content/uploads/2013/12/Entradas-e-Sa%C3%ADdas-digitais-Arduino-pull-up-pull-down.jpg)
+
+O resistor pull-up ou pull-down é basicamente um resistor que fica ligado ao sinal que se deseja ler. Ele serve para garantir que determinado sinal, ou uma entrada de tensão, seja lida enquando o pino não recebe nenhum sinal.
+Os Pull-Ups/Pull-Down são utilizados para evitar flutuação em pinos configurados como entradas(INPUT). Em geral, é necessário implementar externamente, mas muitas vezes há Pull-Ups implementados internamente em alguns pinos do microcontrolador. No caso dos microcontroladores Atmegas, já existem Pull-Ups internos em todos os pinos digitais e analógicos (OBS: Só use Pull-Up nos pinos analógicos caso utilizar estes como digitais), portanto não há necessidade de implementar Pull-Up externamente.
+
+#### Pull-up
+
+Garante que o sinal lido seja de nível alto (5V) enquanto o botão ou a chave nãao forem pressionados.
+
+#### Pull-down
+
+O resistor de pull-down garante que o sinal lid seja de nível baixo (GND) enquando o botão ou a chave não forem pressionados.
+
+##### Arduino
+
+O Arduino possui uma forma de ativar as resistências pull-up que existem dentro dele. Não possui pull-down.
+´´´
+pinMode(pino,  INPUT_PULLUP);
+´´´
 
 ## Links Úteis
 [Arduino](https://www.arduino.cc/en/Tutorial/Debounce)

@@ -7,7 +7,6 @@
  * Created on Janeiro de 2019
  * 
  * Escrever um comando no terminal serial e verificar qual string foi recebida.
- * É precisso corrigir uns bugs!!
 ***********************************************************************************/
 
 String msg; 
