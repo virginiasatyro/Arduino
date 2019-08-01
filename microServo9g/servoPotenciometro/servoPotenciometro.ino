@@ -1,13 +1,3 @@
-/***********************************************************************************
- * File: servoPotenciometro
- * Arduino UNO
- * Arduino IDE
- * Author: Virgínia Sátyro
- * License: Free - Open Source
- * Created on Julho de 2019
- * 
- * Controle de um servo motor atraves de um potenciometro. 
-***********************************************************************************/
 
 #include <Servo.h>
 
