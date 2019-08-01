@@ -1,4 +1,4 @@
-# Sound Sensor - KY-038
+# Sensor Sonoro - KY-038
 
 ![](https://4.bp.blogspot.com/-nIA8CLAD3JU/Var5tgYsiCI/AAAAAAAAD-s/57AIu1muwfY/s1600/Sensor-de-som-KY-038.png)
 ![](https://3.bp.blogspot.com/-tWhOleixewE/Var5xDOMteI/AAAAAAAAD-0/cO2Dpud4mJM/s1600/Sensor-de-som-KY-038-detalhe.png)
