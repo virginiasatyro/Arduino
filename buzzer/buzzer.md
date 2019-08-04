@@ -28,3 +28,28 @@ O buzzer necessita aproximadamente 25 mA dos 5 V fornecidos. Sendo assim, o buzz
 A solução é utilizar um transistor para alimentar o buzzer. Alternativamente, a corrente drenada do pino pode ser reduzida através da ligação com um pino de PWM.
 
 ![](https://startingelectronics.org/tutorials/arduino/modules/active-buzzer/arduino-active-buzzer-circuit.png)
+
+## Módulo Buzzer Passivo
+
+O módulo é dito passivo porque não tem componentes eletrônicos internos que geram um som ou tom. Circuitos eletrônicos externos ou um dispositivo baseado com microcontrolador é necessário para que o dispositivo emita um som. Por o dispositivo ser passivo, ele pode ser considerado mais um pequeno auto-falante do que um buzzer. Ele pode ser utilizado como um gerador de tom/melodia. 
+
+
+### Pinagem 
+
+Tipicamente o pino do positivo é conectado a um pino de I/O do Arduino e o pino negativo é ligado ao GND. Opcional: utilizar um resistor de 100 ohm entre o pino e o buzzer. 
+
+![](https://startingelectronics.org/pinout/geekcreit-passive-buzzer-module-pinout/geekcreit-passive-buzzer-pinout.jpg)
+
+### Esquemático
+
+![](https://www.arduino.cc/en/uploads/Tutorial/Tone_Schematic.png)
+
+### Transdutor Piezo Elétrico 
+
+A palavra piezo é de origem grega e significa pressionar, torcer. Piezos são elementos que utilizam o efeito piezoelétrico. Piezoeletricidade é a capacidade de alguns cristais gerarem tensão elétrica por resposta a uma pressão mecânica
+
+![](https://i1.wp.com/portal.vidadesilicio.com.br/wp-content/uploads/2017/05/piezo-buzzer-funcionamento.gif?resize=220%2C220&ssl=1)
+
+Sendo assim, alguns materiais possuem a capacidade de gerar tensão elétrica quando são submetidos a uma força externa. Uma das aplicações dele é como sensores de batida, como em baterias elétricas. Outro lugar comum de encontrá-los, é em isqueiros, que transformam o movimento do ignitor em faísca.
+O mais interessante é que o contrario também é verdade. Quando inserimos um diferencial de tensão  no cristal, o cristal transforma energia elétrica em energia mecânica. Dessa forma, o piezo se mexe.
+Através desse efeito, podemos alimentar o transdutor com um tensão variável, com o intuito de obter sons.
