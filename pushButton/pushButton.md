@@ -34,7 +34,7 @@ O Arduino possui uma forma de ativar as resistências pull-up que existem dentro
 pinMode(pino,  INPUT_PULLUP);
 ```
 
-## Módulo Push Button
+## Módulo Push Button KY-004
 
 ![](https://startingelectronics.org/tutorials/arduino/modules/push-button/geekcreit-push-button-module.jpg)
 
@@ -43,6 +43,14 @@ pinMode(pino,  INPUT_PULLUP);
 ![](https://startingelectronics.org/tutorials/arduino/modules/push-button/geekcreit-push-button-circuit.png)
 
 ![](https://startingelectronics.org/pinout/push-button/geekcreit-push-button-module-pinout.jpg)
+
+#### Características
+
+- Alimentação         50mA 12VC
+- Temperatura         -25°C ~ 105°C
+- Vida útil           100000 cilos 
+- Força de operação   180/230 (+ - 20gf) 
+- Dimensão            18.5mm x 15mm
 
 ## Links Úteis
 [Arduino](https://www.arduino.cc/en/Tutorial/Debounce)
