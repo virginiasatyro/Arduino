@@ -30,9 +30,21 @@ O resistor de pull-down garante que o sinal lid seja de nível baixo (GND) enqua
 ##### Arduino
 
 O Arduino possui uma forma de ativar as resistências pull-up que existem dentro dele. Não possui pull-down.
-´´´
+```
 pinMode(pino,  INPUT_PULLUP);
-´´´
+```
+
+## Módulo Push Button
+
+![](https://startingelectronics.org/tutorials/arduino/modules/push-button/geekcreit-push-button-module.jpg)
+
+#### Esquemático 
+
+![](https://startingelectronics.org/tutorials/arduino/modules/push-button/geekcreit-push-button-circuit.png)
+
+![](https://startingelectronics.org/pinout/push-button/geekcreit-push-button-module-pinout.jpg)
 
 ## Links Úteis
 [Arduino](https://www.arduino.cc/en/Tutorial/Debounce)
+
+https://startingelectronics.org/tutorials/arduino/modules/push-button/
