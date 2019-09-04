@@ -20,7 +20,7 @@ MCP_CAN CAN0(10);                               // Set CS to pin 10
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   
   // Initialize MCP2515 running at 16MHz with a baudrate of 500kb/s and the masks and filters disabled.
   if(CAN0.begin(MCP_ANY, CAN_500KBPS, MCP_8MHZ) == CAN_OK)
