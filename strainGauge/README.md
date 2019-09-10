@@ -48,3 +48,5 @@ O módulo HX711 utilizado neste tutorial é um conversor analógico-digital e am
 https://www.robocore.net/tutoriais/celula-de-carga-hx711-com-arduino
 http://blog.baudaeletronica.com.br/conversor-hx711-para-balanca-eletronica/
 https://www.youtube.com/watch?v=lWFiKMSB_4M
+
+Tentar fazer essa montagem com trimpot: https://www.instructables.com/id/Tutorial-to-Interface-HX711-With-Load-Cell-Straigh/
