@@ -12,6 +12,8 @@ Células de carga possuem extensômetros (![*strain gauges*](https://github.com/
 
 ![](https://www.robocore.net/upload/tutoriais/246_img_2_M.png?995)
 
+![](https://i.stack.imgur.com/PrHOR.jpg)
+
 ### Ponte de Wheatstone
 
 A ponte de Wheatstone é o método mais utilizado para realizar medições sobre a variação da célula de carga. Com ela é possível identificar valores de resistência ôhmica desconhecida. Ela é utilizada para determinar resistências muito pequenas, podendo ser utilizada para medir uma escala de mili-ohms. O circuito da ponte nada mais é do que duas disposições série-paralelo de dois resistores, preferencialmente de mesmo valor. Com o valor igualado em todos os resistores da ponte, a diferença de potencial no centro da ponte quando medido entre as disposições de resistores deve ser igual a zero. 
