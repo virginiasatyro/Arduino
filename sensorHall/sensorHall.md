@@ -62,5 +62,7 @@ Consiste em um 49E - sensor linear de efeito Hall, um LM393 - comparador diferen
 ### Fonte
 
 https://pt.wikipedia.org/wiki/Efeito_Hall
+
 https://arduinomodules.info/ky-003-hall-magnetic-sensor-module/
+
 https://arduinomodules.info/ky-024-linear-magnetic-hall-module/
